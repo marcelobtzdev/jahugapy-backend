@@ -154,4 +154,17 @@ class UserController extends Controller
 
         $this->notificationService->send($phone, 'Código de verificación: '.$code);
     }
+
+    /**
+     * Account deletion request.
+     *
+     * @param  User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function requestAccountDeletion() {
+        return response()->json([
+            'success' => 'success', 
+            'message' => 'Eliminación de cuenta solicitada correctamente'
+        ]);
+    }
 }

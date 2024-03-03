@@ -18,14 +18,14 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('image');
-            $table->foreignId('game_id')->constrained('games')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('game_id')->nullable()->constrained('games')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('mode_id')->constrained('modes')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('teams_quantity');
             $table->integer('dates_quantity');
             $table->integer('matchs_quantity');
             $table->boolean('registration_status');
-            $table->boolean('status');
-            $table->foreignId('multiplier_id')->constrained('multipliers')->onUpdate('cascade')->onDelete('cascade');
+            $table->boolean('status')->default(0);
+            $table->foreignId('multiplier_id')->nullable()->constrained('multipliers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('date')->nullable()->default(null);
             $table->timestamps();
         });
