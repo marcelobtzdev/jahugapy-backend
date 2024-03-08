@@ -14,11 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::with([
-            'eventTeams' => [
-                'team.members.user'
-            ]
-        ])->get();
+        $events = Event::with('eventTeams.team.members.user')->get();
 
         return $events;
     }

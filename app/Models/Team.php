@@ -21,15 +21,15 @@ class Team extends Model
         'image',
     ];
 
-    /**
-     * The "booted" method of the model.
-     *
-     * @return void
-     */
-    protected static function booted()
-    {
-        static::addGlobalScope(new TeamScope);
-    }
+    // /**
+    //  * The "booted" method of the model.
+    //  *
+    //  * @return void
+    //  */
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope(new TeamScope);
+    // }
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -37,5 +37,9 @@ class Team extends Model
 
     public function members() {
         return $this->hasMany(TeamMember::class);
+    }
+
+    public function scopeOfUser($query) {
+        return $query->where('user_id', auth()->user()->id);
     }
 }

@@ -16,7 +16,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::with('members.user')->get();
+        $teams = Team::ofUser()->with('members.user')->get();
 
         return $teams;
     }
