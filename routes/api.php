@@ -21,9 +21,11 @@ Route::post("/request-account-deletion", "App\Http\Controllers\UserController@re
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get("/logout", "App\Http\Controllers\LoginController@logout");
-
+    
     Route::apiResource('teams', 'App\Http\Controllers\TeamController')->except('show');
     Route::apiResource('events', 'App\Http\Controllers\EventController')->only('index');
     Route::apiResource('events.teams', 'App\Http\Controllers\EventTeamController')->only('store');
     Route::apiResource('users', 'App\Http\Controllers\UserController')->only('update');
+    Route::apiResource('events.scores', 'App\Http\Controllers\EventScoreController')->only('store', 'update');
+    Route::get("/scores/{event}", "App\Http\Controllers\EventScoreController@scores");
 });

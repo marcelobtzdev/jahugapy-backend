@@ -16,7 +16,8 @@ class CreateMultiplierDetailsTable extends Migration
         Schema::create('multiplier_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('multiplier_id')->constrained('multipliers')->onUpdate('cascade')->onDelete('cascade');
-            $table->float('value');
+            $table->string('position_range');
+            $table->float('value', 8, 1);
             $table->timestamps();
         });
     }

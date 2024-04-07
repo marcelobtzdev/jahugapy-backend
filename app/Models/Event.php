@@ -23,6 +23,14 @@ class Event extends Model
         return $this->hasMany(EventTeam::class);
     }
 
+    public function eventScores() {
+        return $this->hasMany(EventScore::class);
+    }
+
+    public function multiplier() {
+        return $this->belongsTo(Multiplier::class);
+    }
+
     protected function image(): Attribute
     {
         return Attribute::make(

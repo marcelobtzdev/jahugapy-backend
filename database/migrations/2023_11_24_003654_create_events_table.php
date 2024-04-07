@@ -27,6 +27,7 @@ class CreateEventsTable extends Migration
             $table->boolean('status')->default(0);
             $table->foreignId('multiplier_id')->nullable()->constrained('multipliers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('date')->nullable()->default(null);
+            $table->integer('current_date')->nullable()->default(null);
             $table->timestamps();
         });
     }
