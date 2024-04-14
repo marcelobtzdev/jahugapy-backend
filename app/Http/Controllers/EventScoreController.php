@@ -100,9 +100,13 @@ class EventScoreController extends Controller
             $scoresCollection->push((object)$score);
         };
 
-        $scoresCollection->sortByDesc('totalPoints')->each(function($score, $key) use ($scoresSortCollection) {
-            $score->position = $key + 1;
+        $positionCount = 1;
+
+        $scoresCollection->sortByDesc('totalPoints')->each(function($score) use ($scoresSortCollection, &$positionCount) {
+            $score->position = $positionCount;
             $scoresSortCollection->push($score);
+
+            $positionCount++;
         });
 
         return $scoresSortCollection;
