@@ -18,6 +18,7 @@ Route::post("/register", "App\Http\Controllers\UserController@store")->name('use
 Route::post('/validate-user', 'App\Http\Controllers\UserController@validateUser');
 Route::post('/resend-validation-code/{user}', 'App\Http\Controllers\UserController@resendValidationCode');
 Route::post("/request-account-deletion", "App\Http\Controllers\UserController@requestAccountDeletion");
+Route::get("/scores/{event}", "App\Http\Controllers\EventScoreController@scores");
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get("/logout", "App\Http\Controllers\LoginController@logout");
@@ -27,5 +28,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('events.teams', 'App\Http\Controllers\EventTeamController')->only('store');
     Route::apiResource('users', 'App\Http\Controllers\UserController')->only('update');
     Route::apiResource('events.scores', 'App\Http\Controllers\EventScoreController')->only('store', 'update');
-    Route::get("/scores/{event}", "App\Http\Controllers\EventScoreController@scores");
 });
