@@ -89,7 +89,7 @@ class EventScoreController extends Controller
             };
             
             $scores[$eventScore->team->id]['kills'] = $scores[$eventScore->team->id]['kills'] + $eventScore->kills;  
-            $scores[$eventScore->team->id]['totalPoints'] = $scores[$eventScore->team->id]['totalPoints'] + $eventScore->points;  
+            $scores[$eventScore->team->id]['totalPoints'] = round($scores[$eventScore->team->id]['totalPoints'] + $eventScore->points, 1);
             $scores[$eventScore->team->id]['matchScores'][] = $eventScore;
         };
 
