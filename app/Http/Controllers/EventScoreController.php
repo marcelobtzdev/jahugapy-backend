@@ -65,12 +65,16 @@ class EventScoreController extends Controller
     }
 
     public function scores(Request $request, Event $event) {
-        $date = $request->date;
+        $eventScoresQuery = EventScore::with('team.members.user')
+                ->where('event_id', $event->id);
+                
+        if (!empty($request->date)) {
+            $date = $request->date;
 
-        $eventScores = EventScore::with('team.members.user')
-                ->where('event_id', $event->id)
-                ->where('date_number', $date)
-                ->orderBy('team_id')
+            $eventScoresQuery->where('date_number', $date);
+        };
+
+        $eventScores = $eventScoresQuery->orderBy('team_id')
                 ->orderBy('match_number')
                 ->get();
 
